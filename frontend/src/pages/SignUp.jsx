@@ -1,19 +1,14 @@
-import React from "react";
-// import SideImage from "../components/SideImage";
+
 import SignUpCard from "../component/SignUpCard"; 
 
 export default function SignUp() {
 
 
-  const onSignUp = (signupData) => {
-    console.log("SignUp data:", signupData);
-
-  };
-
+  
   return (
-    <div className="auth-page flex">
-      {/* <SideImage src="/auth-side.png" /> */}
-      <SignUpCard onSignUp={onSignUp} /> 
-    </div>
-  );
+      <div className="min-h-screen bg-gradient-to-b from-cyan-300 to-pink-400 flex items-center justify-center p-4">
+        
+        <SignUpCard />
+      </div>
+  )
 }

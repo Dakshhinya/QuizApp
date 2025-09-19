@@ -1,49 +1,83 @@
-import {useState} from 'react'
+
 import SignUpButton from "./SignUpButton"
+import { Link } from "react-router-dom";
 
-
-export default function SignUpCard({onSignUp}) {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user"); 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSignUp({ username, email, password, role });
-  };
-
+export default function SignUpCard() {
   return (
-    <div className="card">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <select value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-        <SignUpButton />
-      </form>
-    </div>
-  );
+      <>
+      <div className="w-full max-w-md">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 border-y-yellow-400 rounded-2xl mb-4">
+              <span className="text-2xl font-bold text-black">QuizUp</span>
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome Back</h1>
+            <p className="text-gray-600">Login in to your QuizUp account</p>
+          </div>
+          <div className="space-y-5 flex flex-col">
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2">Username</label>
+              <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" type="email" name="email" /*value={} onChange={}*/ placeholder="Enter your username" required />
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2">Email</label>
+              <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" type="email" name="email" /*value={} onChange={}*/ placeholder="Enter your email" required />
+            </div>
+  
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2">Password</label>
+              <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" type="email" name="email" /*value={} onChange={}*/ placeholder="Enter your password" required />
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+              <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" type="email" name="email" /*value={} onChange={}*/ placeholder="Enter your Confirm password" required />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Role
+              </label>
+              <div className="grid grid-cols-2 gap-3">
+                <label className="flex items-center justify-center p-3 border-2 rounded-lg cursor-pointer transition-all /*${formData.role === 'student' ? 'border-yellow-400 bg-white text-yellow-700' : 'border-gray-200 hover:border-gray-300">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="student"
+                    // checked={formData.role === 'student'}
+                    // onChange={handleInputChange}
+                    className="sr-only"
+                  />
+                  <span className="font-medium">Student</span>
+                </label>
+                <label className="flex items-center justify-center p-3 border-2 rounded-lg cursor-pointer transition-all ${formData.role === 'teacher' ? 'border-yellow-400 bg-white text-yellow-700' : 'border-gray-200 hover:border-gray-300">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="teacher"
+                    // checked={formData.role === 'teacher'}
+                    // onChange={handleInputChange}
+                    className="sr-only"
+                  />
+                  <span className="font-medium">Teacher</span>
+                </label>
+              </div>
+            </div>
+  
+            <SignUpButton/>
+
+            <p className="text-sm text-center text-gray-600">
+            Already have an account?{" "}
+            <Link to="/" className="text-black font-bold hover:underline">
+              Login
+            </Link>
+          </p>
+  
+          </div>
+        </div>
+      </div>
+      
+      </>
+    );
 }
