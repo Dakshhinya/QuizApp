@@ -1,6 +1,6 @@
 import React from "react";
 // import SideImage from "../components/SideImage";
-import SignUpCard from "../component/SignUpCard"; 
+import SignUpCard from "../component/Login&Signup/SignUpCard";
 
 export default function SignUp() {
 
