@@ -12,7 +12,7 @@ export default function SignUpCard() {
               <span className="text-2xl font-bold text-black">QuizUp</span>
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-            <p className="text-gray-600">Login in to your QuizUp account</p>
+            <p className="text-gray-600">Create your QuizUp account</p>
           </div>
           <div className="space-y-5 flex flex-col">
             <div>
