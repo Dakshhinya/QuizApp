@@ -4,6 +4,7 @@ import ChooseTemplate from "../component/templateModule/ChooseTemplate";
 import OnemarkTemplate from "../component/templateModule/OnemarkTemplate";
 import ParaTemplate from "../component/templateModule/ParaTemplate";
 import TrueOrFalseTemplate from "../component/templateModule/TrueOrFalseTemplate";
+import QuestionList from "../component/QuestionList";
 
 function AddQuestions() {
   const [activeTemplate, setActiveTemplate] = useState(null);
@@ -24,9 +25,9 @@ function AddQuestions() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-6">
+    <div className="flex flex-col b  items-center mt-6">
     
-      <div className="flex gap-4 mb-6">
+      <div className="flex  mb-6">
         <Button variant="contained" color="secondary" onClick={() => setActiveTemplate("para")}>
           Paragraph
         </Button>
@@ -45,6 +46,7 @@ function AddQuestions() {
       <div className="w-full flex justify-center">
         {renderTemplate()}
       </div>
+      <QuestionList/>
     </div>
   );
 }

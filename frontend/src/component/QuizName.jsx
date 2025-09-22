@@ -1,7 +1,13 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function QuizName(){
+    const navigate=useNavigate();
+
+    const handleNavigationToAddQuestions=()=>{
+         navigate('/add-questions');
+    }
 
     const [quizname,setQuizName]=useState("");
     return (
@@ -13,8 +19,8 @@ function QuizName(){
             value={quizname}
             onChange={(e)=>setQuizName(e.target.value)}
             />
-            <Button variant="contained" color="secondary">
-                Add Questions
+            <Button variant="contained" color="secondary"
+           onClick={handleNavigationToAddQuestions}>Add  Questions
             </Button>
 
         </div>
