@@ -1,15 +1,11 @@
 import { Button } from "@mui/material";
-function SaveButton(){
+function SaveButton({onClick}){
 
-    const handleSave =()=>{
-        
-    }
-
-
+   
     return (
       <div className="flex flex-col justify-center">
       <div className="flex justify-center">
-        <Button variant="contained" color="secondary" onClick={handleSave}>
+        <Button variant="contained" color="secondary" onClick={onClick}>
        Save
         </Button>
       </div>

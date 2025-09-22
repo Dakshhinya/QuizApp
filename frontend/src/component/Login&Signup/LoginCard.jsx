@@ -54,7 +54,7 @@ export default function LoginCard() {
         <div className="space-y-6 flex flex-col">
           <div>
             <label className="text-sm font-medium text-gray-700 mb-2">Email</label>
-            <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" 
+            <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" 
             type="email" 
             name="email" 
             value={email} 
@@ -65,7 +65,7 @@ export default function LoginCard() {
 
           <div>
             <label className="text-sm font-medium text-gray-700 mb-2">Password</label>
-            <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" 
+            <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" 
             type="password" 
             name="password" 
             value={password} 
