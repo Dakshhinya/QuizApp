@@ -25,9 +25,9 @@ function AddQuestions() {
   };
 
   return (
-    <div className="flex flex-col b  items-center mt-6">
+    <div className="flex flex-col items-center mt-6">
     
-      <div className="flex  mb-6">
+      <div className="flex gap-5  mb-6">
         <Button variant="contained" color="secondary" onClick={() => setActiveTemplate("para")}>
           Paragraph
         </Button>
