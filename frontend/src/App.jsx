@@ -14,11 +14,16 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+
+        <Route element={<Layout/>}>
+          <Route path="/student-dashboard" element={<StudentDashboard />} />
+          <Route path="/teacher-dashboard" element={<TeacherDashboard />} /> 
+        </Route>   
       </Routes>
 
     </BrowserRouter>
     </>
-  )
+  );
 }
 
 export default App
