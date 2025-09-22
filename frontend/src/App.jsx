@@ -4,10 +4,9 @@ import SignUp from './pages/SignUp'
 import { Navigate } from "react-router-dom";
 import StudentDashboard from "./pages/StudentDashboard";  
 import TeacherDashboard from "./pages/TeacherDashboard"; 
+import Layout from './component/Layout';
 
 function App() {
-
-
   return (
     <>
       <BrowserRouter>
@@ -15,13 +14,16 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/student-dashboard" element={<StudentDashboard />} />
-        <Route path="/teacher-dashboard" element={<TeacherDashboard />} />    
+
+        <Route element={<Layout/>}>
+          <Route path="/student-dashboard" element={<StudentDashboard />} />
+          <Route path="/teacher-dashboard" element={<TeacherDashboard />} /> 
+        </Route>   
       </Routes>
 
     </BrowserRouter>
     </>
-  )
+  );
 }
 
 export default App
