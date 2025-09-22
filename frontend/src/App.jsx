@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 import StudentDashboard from "./pages/StudentDashboard";  
 import TeacherDashboard from "./pages/TeacherDashboard"; 
 import Layout from './component/Layout';
+import AddQuestions from './pages/AddQuestions';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route element={<Layout/>}>
           <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route path="/teacher-dashboard" element={<TeacherDashboard />} /> 
+          <Route path="/teacher-dashboard/add-questions" element={<AddQuestions/>}/>
         </Route>   
       </Routes>
 

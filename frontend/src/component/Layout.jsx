@@ -9,7 +9,7 @@ export default function Layout() {
       
       <Navbar/>
       <main className="flex-grow mt-16"> 
-        <Outlet /> 
+      <Outlet/>
       </main>
       <Footer/>
       
