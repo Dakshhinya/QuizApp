@@ -3,19 +3,43 @@ import QuestionInput from "./commonComponents/QuestionInput";
 import SaveButton from "./commonComponents/SaveButton";
 import CancelButton from "./commonComponents/CancelButton";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addQuestion } from "../../store/questionsSlice";
 
 function ParaTemplate() {
-  const [answer, setAnswer] = useState("");
+  const [paraAnswer, setparaAnswer] = useState("");
+    const [ParaQuestionText, setParaQuestionText] = useState("");  
+    const dispatch=useDispatch();
+
+
+    const handleSave=()=>{
+      dispatch(addQuestion(
+        {
+          type:"paragraph",
+          question:ParaQuestionText,
+          answer:paraAnswer,
+        }
+      ));
+      setParaQuestionText("");
+      setparaAnswer("");
+    }
+
+    const  handleCancel=()=>{
+    setParaQuestionText("");
+    setparaAnswer("");
+  };
+
+
   return (
     <Card className="flex flex-col justify-center items-center mt-5 p-4">
       <div className="flex flex-col">
-        <QuestionInput />
+        <QuestionInput value={ParaQuestionText} onChange={setParaQuestionText} />
         <div className="flex justify-center mt-5 mb-5 ">
         <TextField
           label="Answer"
           placeholder="Enter detailed answer"
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
+          value={paraAnswer}
+          onChange={(e) => setparaAnswer(e.target.value)}
           size="small"
           multiline
           minRows={3}
@@ -24,8 +48,8 @@ function ParaTemplate() {
         />
         </div>
         <div className="flex justify-center gap-4">
-          <SaveButton />
-          <CancelButton />
+          <SaveButton  onClick={handleSave}/>
+          <CancelButton onClick={handleCancel}/>
         </div>
       </div>
     </Card>

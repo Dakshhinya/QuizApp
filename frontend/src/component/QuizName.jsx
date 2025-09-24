@@ -1,15 +1,20 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addQuiz } from "../store/questionsSlice";
 
 function QuizName(){
     const navigate=useNavigate();
-
+    const dispatch=useDispatch();
+    const [quizname,setQuizName]=useState(""); 
+    
     const handleNavigationToAddQuestions=()=>{
+        dispatch(addQuiz({name:quizname}))
          navigate('/teacher-dashboard/add-questions');
     }
-    const [quizname,setQuizName]=useState("");
-     const [standard,setStandard]=useState("");
+   
+ 
 
     return (
         <div className="flex flex-col justify-center">
@@ -20,12 +25,7 @@ function QuizName(){
             value={quizname}
             onChange={(e)=>setQuizName(e.target.value)}
             />
-            <TextField 
-            label="Enter class"
-            variant="outlined"
-            value={standard}
-            onChange={(e)=>setStandard(e.target.value)}
-            />
+         
 
             <Button variant="contained" color="secondary"
            onClick={handleNavigationToAddQuestions}>Add  Questions
