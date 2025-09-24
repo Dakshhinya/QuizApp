@@ -13,14 +13,15 @@ function OnemarkTemplate() {
 
   const handleSave=()=>{
    
-    dispatch(
-        addQuestion({
-             type: "oneMark",
-             question:QuestionText,
-             answer:answer,
+  dispatch(
+  addQuestion({
+    
+      type: "oneMark",
+      question: QuestionText,
+      answer: answer,
+   
   })
-    );
-
+);
     setQuestionText("");
     setAnswer("");
   }
