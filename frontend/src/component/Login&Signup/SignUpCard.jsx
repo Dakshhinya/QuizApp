@@ -3,6 +3,7 @@ import SignUpButton from "./SignUpButton"
 import { Link } from "react-router-dom";
 
 export default function SignUpCard() {
+
   return (
       <>
       <div className="w-full max-w-md">
@@ -17,23 +18,23 @@ export default function SignUpCard() {
           <div className="space-y-5 flex flex-col">
             <div>
               <label className="text-sm font-medium text-gray-700 mb-2">Username</label>
-              <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" type="email" name="email" /*value={} onChange={}*/ placeholder="Enter your username" required />
+              <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" type="username" name="username" value={} onChange={(e) => setUsername(e.target.value)} placeholder="Enter your username" required />
             </div>
 
             <div>
               <label className="text-sm font-medium text-gray-700 mb-2">Email</label>
-              <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" type="email" name="email" /*value={} onChange={}*/ placeholder="Enter your email" required />
+              <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" type="email" name="email" value={} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" required />
             </div>
   
             <div>
               <label className="text-sm font-medium text-gray-700 mb-2">Password</label>
-              <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" type="email" name="email" /*value={} onChange={}*/ placeholder="Enter your password" required />
+              <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" type="password" name="password" value={} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" required />
             </div>
 
-            <div>
+            {/* <div>
               <label className="text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
-              <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" type="email" name="email" /*value={} onChange={}*/ placeholder="Enter your Confirm password" required />
-            </div>
+              <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full ocus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" type="email" name="email" value={} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your Confirm password" required />
+            </div> */}
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -45,8 +46,8 @@ export default function SignUpCard() {
                     type="radio"
                     name="role"
                     value="student"
-                    // checked={formData.role === 'student'}
-                    // onChange={handleInputChange}
+                    checked={formData.role === 'student'}
+                    onChange={handleInputChange}
                     className="sr-only"
                   />
                   <span className="font-medium">Student</span>
@@ -56,8 +57,8 @@ export default function SignUpCard() {
                     type="radio"
                     name="role"
                     value="teacher"
-                    // checked={formData.role === 'teacher'}
-                    // onChange={handleInputChange}
+                    checked={formData.role === 'teacher'}
+                    onChange={handleInputChange}
                     className="sr-only"
                   />
                   <span className="font-medium">Teacher</span>
