@@ -1,9 +1,9 @@
-const pool=require('../DB/Database');
+const pool=require('../DB/Database')
 
-
-const createUser=async({username,emailid,password,role})=>{
-    const result=await pool.query('INSERT INTO users(username,emailid,password,role) VALUES($1,$2,$3,$4)  RETURNING *',  [username, emailid, password, role]);
+const validUser = async({emailid,password})=>{
+    const result =await pool.query(
+        'SELECT * FROM users WHERE emailid=$1 AND password=$2',  [emailid, password]);
     return result.rows[0];
 }
 
-module.exports=createUser;
+module.exports=validUser;

@@ -1,39 +1,48 @@
 
+
 import { useState } from "react";
 import LoginButton from "./LoginButton"
 import { Link, useNavigate} from "react-router-dom";
+import axios from "axios";
+
 
 export default function LoginCard() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+ const [error, setError] =useState("")
+ const navigate= useNavigate()
+  const [form, setForm] = useState({
+    emailid: "",
+    password: ""
+  });
 
-  const users = [
-    { email: "student@example.com", password: "student123", role: "student" },
-    { email: "teacher@example.com", password: "teacher123", role: "teacher" },
-  ];
+  const handleInputChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
 
-   const handleLogin = (e) => {
+
+   const handleLogin =async (e) => {
     e.preventDefault();
 
-    const user = users.find(
-      (u) => u.email === email && u.password === password
-    );
+    try{
+      const login = await axios.post ('http://localhost:3000/api/auth/login', form)
+      console.log(login.data.role);
+      alert("Login success")
+      if (login.data.role) {
 
-    if (user) {
-     
-      localStorage.setItem("role", user.role);
-
-      if (user.role === "student") {
+      if (login.data.role === "student") {
         navigate("/student-dashboard");
-      } else if (user.role === "teacher") {
+      } else if (login.data.role === "teacher") {
         navigate("/teacher-dashboard");
       }
     } else {
       setError("Invalid email or password");
     }
+    }
+    catch(err){
+      setError('Login failed', err);
+    }
+
+    
   };
 
   return (
@@ -55,10 +64,10 @@ export default function LoginCard() {
           <div>
             <label className="text-sm font-medium text-gray-700 mb-2">Email</label>
             <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" 
-            type="email" 
-            name="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
+            type="emailid" 
+            name="emailid" 
+            value={form.emailid} 
+            onChange={handleInputChange} 
             placeholder="Enter your email" 
             required />
           </div>
@@ -68,8 +77,8 @@ export default function LoginCard() {
             <input className="px-4 py-3 border border-gray-300 rounded-lg  w-full focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors" 
             type="password" 
             name="password" 
-            value={password} 
-            onChange={(e)=> setPassword(e.target.value)} 
+            value={form.password} 
+            onChange={handleInputChange} 
             placeholder="Enter your password" 
             required />
           </div>
