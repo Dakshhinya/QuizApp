@@ -1,4 +1,5 @@
 const createUser = require("../models/loginSchema")
+const validUser = require("../models/loginnSchema")
 
 
 
@@ -9,4 +10,10 @@ const registerUser=async(userData)=>{
 
 }
 
-module.exports=registerUser;
+const loginUser=async(userData)=>{
+    const user = await validUser(userData);
+    return user;
+}
+
+module.exports={registerUser,loginUser};
+// module.exports=loginUser;
