@@ -1,4 +1,5 @@
 
+
 import { useState } from "react";
 import LoginButton from "./LoginButton"
 import { Link, useNavigate} from "react-router-dom";
@@ -24,11 +25,13 @@ export default function LoginCard() {
 
     try{
       const login = await axios.post ('http://localhost:3000/api/auth/login', form)
-      if (login) {
+      console.log(login.data.role);
+      alert("Login success")
+      if (login.data.role) {
 
-      if (login.role === "student") {
+      if (login.data.role === "student") {
         navigate("/student-dashboard");
-      } else if (login.role === "teacher") {
+      } else if (login.data.role === "teacher") {
         navigate("/teacher-dashboard");
       }
     } else {
