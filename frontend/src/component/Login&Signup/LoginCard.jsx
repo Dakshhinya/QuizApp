@@ -26,6 +26,10 @@ export default function LoginCard() {
     try{
       const login = await axios.post ('http://localhost:3000/api/auth/login', form)
       console.log(login.data.role);
+      
+      localStorage.setItem("token", login.data.token);
+      localStorage.setItem("role", login.data.role)
+
       alert("Login success")
       if (login.data.role) {
 
