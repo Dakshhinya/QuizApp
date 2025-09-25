@@ -1,17 +1,32 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { addQuiz } from "../store/questionsSlice";
+
 
 function QuizName(){
     const navigate=useNavigate();
-    const dispatch=useDispatch();
+ 
     const [quizname,setQuizName]=useState(""); 
+    const token=localStorage.getItem("token");
+    console.log("Token",token);
     
-    const handleNavigationToAddQuestions=()=>{
-        dispatch(addQuiz({name:quizname}))
-         navigate('/teacher-dashboard/add-questions');
+    const handleNavigationToAddQuestions=async()=>{
+         try{
+            const res=await axios.post("http://localhost:3000/api/auth/quiz/create",{quizname},
+                {
+                    headers:{
+                    Authorization :`Bearer ${token}`
+                }}
+            )
+
+            console.log(res);
+             navigate('/teacher-dashboard/add-questions');
+         }catch(err)
+         {
+          console.log(err);
+         }
+        
     }
    
  

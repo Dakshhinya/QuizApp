@@ -1,5 +1,6 @@
 const createUser = require("../models/SignupSchema")
 const validUser=require("../models/loginSchema")
+const jwt=require("jsonwebtoken");
 
 
 const registerUser=async(userData)=>{
@@ -16,13 +17,19 @@ const loginUser=async(userData)=>{
      {
          return null;
      }
-     return{
+     const payload ={
       email: loguser.emailid,
-      name: loguser.name,
+      id: loguser.id,
       role: loguser.role,  
     }
-    
- 
+
+    const token=jwt.sign(payload,process.env.JWT_SECRET,{expiresIn:"1h"});
+
+    return{
+        token,
+        id:loguser.id,
+        role:loguser.role
+        }
    
 }
 
