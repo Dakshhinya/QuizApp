@@ -9,7 +9,7 @@ const createQuizController=async(req,res)=>{
     try{
         const newQuiz=await createQuiz(req.body.quizname,teacherId);
         res.json(newQuiz);
-        res.send(201).json({message:"Quiz added successfully"});
+       
 
     }
     catch(err)
