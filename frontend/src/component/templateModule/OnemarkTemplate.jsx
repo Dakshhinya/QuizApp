@@ -1,47 +1,40 @@
-import { Card ,TextField} from "@mui/material";
+import { Card, TextField } from "@mui/material";
 import QuestionInput from "./commonComponents/QuestionInput";
 import SaveButton from "./commonComponents/SaveButton";
 import CancelButton from "./commonComponents/CancelButton";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addQuestion } from "../../store/questionsSlice";
+import axios from "axios";
 
 function OnemarkTemplate() {
-    const [QuestionText, setQuestionText] = useState("");  
+  const [QuestionText, setQuestionText] = useState("");
   const [answer, setAnswer] = useState("");
-  const dispatch=useDispatch();
+  const quizId = localStorage.getItem("quizId");
 
-  const handleSave=()=>{
-   
-  dispatch(
-  addQuestion({
-    
-      type: "oneMark",
-      question: QuestionText,
-      answer: answer,
-   
-  })
-);
-    setQuestionText("");
-    setAnswer("");
-  }
+  const handleSave = async () => {
+    try {
+      const OnemarkQuestion = await axios.post(
+        "http://localhost:3000/api/auth/questions/create",
+        { quizId, type: "onemark", question: QuestionText, answer: answer }
+      );
+      console.log(OnemarkQuestion);
+      alert("One mark question added");
+      setQuestionText("");
+      setAnswer("");
+    } catch (err) {
+      console.log(err, "Failed to save the one mark question");
+    }
+  };
 
-
-  const  handleCancel=()=>{
+  const handleCancel = () => {
     setQuestionText("");
     setAnswer("");
   };
-
-
-
-
-
 
   return (
     <Card className="flex flex-col justify-center items-center mt-5 p-4">
       <div className="flex flex-col">
         <QuestionInput value={QuestionText} onChange={setQuestionText} />
-          <div className="flex justify-center mt-5 mb-5 ">
+        <div className="flex justify-center mt-5 mb-5 ">
           <TextField
             label="Answer"
             placeholder="Enter correct answer"

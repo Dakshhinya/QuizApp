@@ -20,7 +20,8 @@ function QuizName(){
                 }}
             )
 
-            console.log(res);
+             console.log(res);
+             localStorage.setItem("quizId",res.data.id);
              navigate('/teacher-dashboard/add-questions');
          }catch(err)
          {

@@ -39,6 +39,11 @@ export default function LoginCard() {
     } catch (err) {
       setError(err.response?.data?.error || "Login failed");
     }
+    finally{
+      setForm("");
+    }
+
+
   };
 
   return (
