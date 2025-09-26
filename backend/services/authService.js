@@ -6,8 +6,6 @@ const jwt=require("jsonwebtoken");
 const registerUser=async(userData)=>{
     const user=await createUser(userData);
     return user;
-
-
 }
 
 const loginUser=async(userData)=>{

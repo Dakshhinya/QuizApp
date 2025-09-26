@@ -3,23 +3,24 @@ import QuestionInput from "./commonComponents/QuestionInput";
 import SaveButton from "./commonComponents/SaveButton";
 import CancelButton from "./commonComponents/CancelButton";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addQuestion } from "../../store/questionsSlice";
+import axios from "axios";
+
 
 function ParaTemplate() {
   const [paraAnswer, setparaAnswer] = useState("");
     const [ParaQuestionText, setParaQuestionText] = useState("");  
-    const dispatch=useDispatch();
+     const quizId = localStorage.getItem('quizId');
+    
 
+    const handleSave=async()=>{
+      try{
+                const paragraphQuestion = await axios.post('http://localhost:3000/api/auth/questions/create', {quizId, type:'paragraph', question:ParaQuestionText, answer:paraAnswer})
+                console.log(paragraphQuestion)
 
-    const handleSave=()=>{
-      dispatch(addQuestion(
-        {
-          type:"paragraph",
-          question:ParaQuestionText,
-          answer:paraAnswer,
-        }
-      ));
+      }catch(err){
+              console.log(err,"Failed to save the paragrph question")
+
+      }
       setParaQuestionText("");
       setparaAnswer("");
     }

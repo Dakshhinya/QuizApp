@@ -4,8 +4,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 
+
 function QuizName(){
     const navigate=useNavigate();
+ 
  
     const [quizname,setQuizName]=useState(""); 
     const token=localStorage.getItem("token");
@@ -30,8 +32,6 @@ function QuizName(){
         
     }
    
- 
-
     return (
         <div className="flex flex-col justify-center">
         <div className=" flex flex-col p-10 gap-3 justify center items-center">
@@ -41,8 +41,7 @@ function QuizName(){
             value={quizname}
             onChange={(e)=>setQuizName(e.target.value)}
             />
-         
-
+            
             <Button variant="contained" color="secondary"
            onClick={handleNavigationToAddQuestions}>Add  Questions
             </Button>

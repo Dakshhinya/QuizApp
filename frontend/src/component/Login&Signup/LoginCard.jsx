@@ -39,11 +39,14 @@ export default function LoginCard() {
     } catch (err) {
       setError(err.response?.data?.error || "Login failed");
     }
+<<<<<<< HEAD
     finally{
       setForm("");
     }
 
 
+=======
+>>>>>>> dakkuAPI
   };
 
   return (
