@@ -6,6 +6,7 @@ import StudentDashboard from "./pages/StudentDashboard";
 import TeacherDashboard from "./pages/TeacherDashboard"; 
 import Layout from './component/Layout';
 import AddQuestions from './pages/AddQuestions';
+import QuestionList from './component/QuestionList';
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
       </Routes>
 
     </BrowserRouter>
+
+    
     </>
   );
 }
