@@ -3,27 +3,25 @@ import QuestionInput from "./commonComponents/QuestionInput";
 import SaveButton from "./commonComponents/SaveButton";
 import CancelButton from "./commonComponents/CancelButton";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addQuestion } from "../../store/questionsSlice";
+import axios from "axios";
 
 function OnemarkTemplate() {
   const [QuestionText, setQuestionText] = useState("");  
   const [answer, setAnswer] = useState("");
-  const dispatch=useDispatch();
+ const quizId = localStorage.getItem('quizId');
 
-  const handleSave=()=>{
-   
-  dispatch(
-  addQuestion({
-    
-      type: "oneMark",
-      question: QuestionText,
-      answer: answer,
-   
-  })
-);
-    setQuestionText("");
-    setAnswer("");
+  const handleSave=async()=>{
+    try{
+      const oneMarkQuestion = await axios.post('http://localhost:3000/api/auth/questions/create', {quizId, type:'onemark', question:QuestionText, answer:answer})
+      console.log(oneMarkQuestion)
+
+      alert("One mark question added");
+      setQuestionText("");
+      setAnswer("");
+    }
+    catch(err){
+      console.log(err,"Failed to save the one mark question")
+    }
   }
 
 

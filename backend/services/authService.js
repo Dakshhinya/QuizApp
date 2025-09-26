@@ -1,6 +1,7 @@
 const createUser = require("../models/SignupSchema")
 const validUser=require("../models/loginSchema")
-const jwt = require("jsonwebtoken")
+const jwt=require("jsonwebtoken");
+
 
 const registerUser=async(userData)=>{
     const user=await createUser(userData);
@@ -14,18 +15,20 @@ const loginUser=async(userData)=>{
      {
          return null;
      }
+     const payload ={
+      email: loguser.emailid,
+      id: loguser.id,
+      role: loguser.role,  
+    }
 
-    const payload={email: loguser.emailid,
-     id: loguser.id,
-     role: loguser.role} 
+    const token=jwt.sign(payload,process.env.JWT_SECRET,{expiresIn:"1h"});
 
-     const token = jwt.sign(payload, process.env.JWT_SECRET,{expiresIn: "1h"})
-     
-     return{
+    return{
         token,
-        id : loguser.id,
-        role: loguser.role
-     }
+        id:loguser.id,
+        role:loguser.role
+        }
+   
 }
 
 module.exports={registerUser,loginUser};

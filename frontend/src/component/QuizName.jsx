@@ -1,28 +1,33 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 function QuizName(){
     const navigate=useNavigate();
-
+ 
     const [quizname,setQuizName]=useState(""); 
     const token=localStorage.getItem("token");
+    console.log("Token",token);
+    
     const handleNavigationToAddQuestions=async()=>{
-        try{
-            const res=await axios.post('http://localhost:3000/api/auth/quiz/create',{quizname},            
-            {
-                headers:{
-                    Authorization : `Bearer ${token}`
+         try{
+            const res=await axios.post("http://localhost:3000/api/auth/quiz/create",{quizname},
+                {
+                    headers:{
+                    Authorization :`Bearer ${token}`
                 }}
-        )
+            )
+
             console.log(res);
-            navigate('/teacher-dashboard/add-questions')
-        }
-        catch(err){
-            console.error('failed', err);
-        }
-         navigate('/teacher-dashboard/add-questions');
+            localStorage.setItem('quizId', res.data.id);
+             navigate('/teacher-dashboard/add-questions');
+         }catch(err)
+         {
+          console.log(err);
+         }
+        
     }
    
     return (
