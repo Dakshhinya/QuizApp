@@ -1,62 +1,76 @@
-import { useSelector } from "react-redux";
-import { Card } from "@mui/material";
+import React, { useState } from "react";
+import { Card, Button, TextField, Dialog, DialogActions,
+  
+  DialogTitle } from "@mui/material";
 
 function QuestionList() {
+  const [questions, setQuestions] = useState([
+    { id: 1, question_type: "oneMark", questionText: "What is 2 + 2?", answer: "4" },
+      { id: 1, question_type: "oneMark", questionText: "What is 2 + 2?", answer: "4" }
+  ]);
 
-  const { quizzes, activeQuizId } = useSelector((state) => state.questions);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [editingQuestion, setEditingQuestion] = useState(null);
 
-  
-  const activeQuiz = quizzes.find((q) => q.id === activeQuizId);
+  const handleDelete = (id) => {
+    setQuestions(questions.filter(q => q.id !== id));
+  };
 
-  
-  if (!activeQuiz) {
-    return (
-      <Card className="mt-6 p-4 w-full">
-        <h2 className="text-xl font-bold mb-4">No quiz selected</h2>
-      </Card>
-    );
-  }
+  const handleOpenEdit = (q) => {
+    setEditingQuestion({ ...q });
+    setOpenEdit(true);
+  };
 
+  const handleCloseEdit = () => {
+    setEditingQuestion(null);
+    setOpenEdit(false);
+  };
 
-  if (!activeQuiz.questions.length) {
-    return (
-      <Card className="mt-6 p-4 w-full">
-        <h2 className="text-xl font-bold mb-4">
-          {activeQuiz.name} - No Questions Yet
-        </h2>
-      </Card>
-    );
-  }
+  const handleSaveEdit = () => {
+    setQuestions(questions.map(q => q.id === editingQuestion.id ? editingQuestion : q));
+    handleCloseEdit();
+  };
 
+  if (!questions.length) return <Card className="mt-6 p-4 w-full"><h2>No Questions Yet</h2></Card>;
 
   return (
-    <Card className="mt-6 p-4 w-full">
-      <h2 className="text-xl font-bold mb-4">
-        {activeQuiz.name} - Saved Questions
-      </h2>
-      {activeQuiz.questions.map((q, index) => (
-        <div key={index} className="mb-3 pb-2 border-b">
-          <p className="font-semibold">
-            {q.type.toUpperCase()}: {q.question}
-          </p>
+    <div className="mt-6 p-4 w-3/4 border-3 rounded-2xl border-purple-700">
+      <h2 className="text-xl font-bold mb-4">Questions</h2>
+      {questions.map(q => (
+        <div key={q.id} className="mb-3 pb-2 ">
+          <p className="font-semibold">{q.question_type.toUpperCase()}: {q.questionText}</p>
+          <p className="text-gray-700">Answer: {q.answer}</p>
 
-          {q.type === "choose" ? (
-            <ul className="ml-4 list-disc">
-              {q.options.map((opt, i) => (
-                <li
-                  key={i}
-                  className={opt.isCorrect ? "font-bold text-green-600" : ""}
-                >
-                  {opt.text} {opt.isCorrect ? "(Correct)" : ""}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-gray-700">Answer: {q.answer}</p>
-          )}
+          <div className="mt-2 flex gap-2">
+            <Button variant="contained" size="small" color="secondary" onClick={() => handleOpenEdit(q)}>Edit</Button>
+            <Button variant="contained" color="error" size="small" onClick={() => handleDelete(q.id)}>Delete</Button>
+          </div>
         </div>
       ))}
-    </Card>
+
+    
+      <Dialog open={openEdit} onClose={handleCloseEdit} maxWidth="sm" fullWidth>
+        <DialogTitle >Edit Question</DialogTitle>
+        <div className="flex flex-col gap-5 p-5">
+          <TextField
+            label="Question"
+            value={editingQuestion?.questionText || ""}
+            onChange={(e) => setEditingQuestion({ ...editingQuestion, questionText: e.target.value })}
+            fullWidth
+          />
+          <TextField
+            label="Answer"
+            value={editingQuestion?.answer || ""}
+            onChange={(e) => setEditingQuestion({ ...editingQuestion, answer: e.target.value })}
+            fullWidth
+          />
+        </div>
+        <DialogActions>
+          <Button onClick={handleCloseEdit} variant="contained" color="secondary">Cancel</Button>
+          <Button onClick={handleSaveEdit} variant="contained" color="secondary">Save</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 }
 

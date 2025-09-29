@@ -6,29 +6,29 @@ import { useState } from "react";
 import axios from "axios";
 
 function OnemarkTemplate() {
-  const [QuestionText, setQuestionText] = useState("");  
+  const [QuestionText, setQuestionText] = useState("");
   const [answer, setAnswer] = useState("");
- const quizId = localStorage.getItem('quizId');
+  const quizId = localStorage.getItem("quizId");
 
-  const handleSave=async()=>{
-    try{
-      const oneMarkQuestion = await axios.post('http://localhost:3000/api/auth/questions/create', {quizId, type:'onemark', question:QuestionText, answer:answer})
-      console.log(oneMarkQuestion)
-
+  const handleSave = async () => {
+    try {
+      const OnemarkQuestion = await axios.post(
+        "http://localhost:3000/api/auth/questions/create",
+        { quizId, type: "onemark", question: QuestionText, answer: answer }
+      );
+      console.log(OnemarkQuestion);
       alert("One mark question added");
       setQuestionText("");
       setAnswer("");
+    } catch (err) {
+      console.log(err, "Failed to save the one mark question");
     }
-    catch(err){
-      console.log(err,"Failed to save the one mark question")
-    }
-  }
+  };
 
   const handleCancel = () => {
     setQuestionText("");
     setAnswer("");
   };
-
 
   return (
     <Card className="flex flex-col justify-center items-center mt-5 p-4 ">

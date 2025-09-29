@@ -9,27 +9,27 @@ import axios from "axios";
 function ParaTemplate() {
   const [paraAnswer, setparaAnswer] = useState("");
     const [ParaQuestionText, setParaQuestionText] = useState("");  
-     const quizId = localStorage.getItem('quizId');
-    
-
-    const handleSave=async()=>{
-      try{
-                const paragraphQuestion = await axios.post('http://localhost:3000/api/auth/questions/create', {quizId, type:'paragraph', question:ParaQuestionText, answer:paraAnswer})
-                console.log(paragraphQuestion)
-
-      }catch(err){
-              console.log(err,"Failed to save the paragrph question")
-
-      }
-      setParaQuestionText("");
-      setparaAnswer("");
-    }
-
-    const  handleCancel=()=>{
-    setParaQuestionText("");
-    setparaAnswer("");
-  };
-
+     const quizId = localStorage.getItem("quizId");
+   
+     const handleSave = async () => {
+       try {
+         const ParagraphQuestion = await axios.post(
+           "http://localhost:3000/api/auth/questions/create",
+           { quizId, type: "paragraph", question: ParaQuestionText, answer: paraAnswer }
+         );
+         console.log(ParagraphQuestion);
+         alert("Paragraph question added");
+         setParaQuestionText("");
+         setparaAnswer("");
+       } catch (err) {
+         console.log(err, "Failed to save the paragraph question");
+       }
+     };
+   
+     const handleCancel = () => {
+       setParaQuestionText("");
+       setparaAnswer("");
+     };
 
   return (
     <Card className="flex flex-col justify-center items-center mt-5 p-4">

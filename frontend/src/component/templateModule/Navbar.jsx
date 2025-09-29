@@ -1,6 +1,6 @@
 export default function Navbar() {
   return (
-    <nav className="w-screen h-20 flex items-center justify-between px-12 bg-gradient-to-b from-cyan-300 to-pink-400">
+    <nav className="w-screen h-20 flex items-center justify-between px-12 bg-gradient-to-b from-cyan-300 to-pink-400  ">
 
       <p className="font-bold text-2xl">QuizUp</p>
 
