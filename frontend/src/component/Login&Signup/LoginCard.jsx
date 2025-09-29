@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function LoginCard() {
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -16,6 +17,7 @@ export default function LoginCard() {
   };
 
   const handleLogin = async (e) => {
+ 
     e.preventDefault();
 
     try {
@@ -73,7 +75,7 @@ export default function LoginCard() {
                   required
                 />
               </div>
-
+      
               <div>
                 <label className="text-sm font-medium text-gray-700 mb-2">
                   Password
@@ -88,9 +90,10 @@ export default function LoginCard() {
                   required
                 />
               </div>
+              <div>
+              </div>
 
               {error && <p className="text-red-500 text-sm">{error}</p>}
-
               <LoginButton />
 
               <p className="text-sm text-center text-gray-600">

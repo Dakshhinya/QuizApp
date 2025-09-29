@@ -3,36 +3,38 @@ import QuestionInput from "./commonComponents/QuestionInput";
 import SaveButton from "./commonComponents/SaveButton";
 import CancelButton from "./commonComponents/CancelButton";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addQuestion } from "../../store/questionsSlice";
+import axios from "axios";
 
 function TrueOrFalseTemplate() {
-  const [TFQuestionText,setTFQuestionText]=useState("");
+  const [TFQuestionText, setTFQuestionText] = useState("");
   const [TFanswer, setTFAnswer] = useState(null);
-  const dispatch=useDispatch();
 
+  const quizId=localStorage.getItem('quizId');
+  const handleSave = async () => {
+    const TrueOrFalseResponse = await axios.post(
+      "http://localhost:3000/api/auth/questions/create",
+      {
+        quizId,
+        type: "TrueOrFalse",
+        question: TFQuestionText,
+        answer:TFanswer
+      }
+    );
 
-  const handleSave=()=>{
-    dispatch(addQuestion({
-      type:"TrueorFalse",
-      question:TFQuestionText,
-      answer:TFanswer
-    }))
-
+    console.log(TrueOrFalseResponse);
+    alert("TrueOrFalse question added");
     setTFQuestionText("");
     setTFAnswer("");
-  }
+  };
 
-
-  const handleCancel=()=>{
-     setTFQuestionText("");
+  const handleCancel = () => {
+    setTFQuestionText("");
     setTFAnswer("");
-  }
+  };
   return (
     <Card className="flex flex-col justify-center items-center mt-5 p-4">
-     
       <div className="flex flex-col">
-        <QuestionInput value={TFQuestionText} onChange={setTFQuestionText}/>
+        <QuestionInput value={TFQuestionText} onChange={setTFQuestionText} />
         <div className="flex justify-center">
           <RadioGroup
             row
@@ -44,8 +46,7 @@ function TrueOrFalseTemplate() {
           </RadioGroup>
         </div>
         <div className="flex justify-center gap-4">
-         
-          <SaveButton  onClick={handleSave}/>
+          <SaveButton onClick={handleSave} />
           <CancelButton onClick={handleCancel} />
         </div>
       </div>

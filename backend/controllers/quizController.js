@@ -1,4 +1,3 @@
-
 const createQuiz=require("../models/quizesSchema");
 
 const createQuizController=async(req,res)=>{
@@ -8,7 +7,8 @@ const createQuizController=async(req,res)=>{
      const teacherId = req.user.id; 
     try{
         const newQuiz=await createQuiz(req.body.quizname,teacherId);
-        res.send(newQuiz).json({message:"Quiz added successfully"});
+        res.json(newQuiz);
+       
 
     }
     catch(err)
