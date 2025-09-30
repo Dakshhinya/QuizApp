@@ -23,11 +23,11 @@ function QuizName(){
              console.log(res);
              localStorage.setItem("quizId",res.data.id);
              navigate('/teacher-dashboard/add-questions');
-         }catch(err)
+         }
+         catch(err)
          {
           console.log(err);
-         }
-        
+         }    
     }
    
     return (
@@ -41,10 +41,11 @@ function QuizName(){
             />
             
             <Button variant="contained" color="secondary"
-           onClick={handleNavigationToAddQuestions}>Add  Questions
-            </Button>
+           onClick={handleNavigationToAddQuestions}>Add Questions
+            </Button>            
 
         </div>
+        
         </div>
     )
 }
