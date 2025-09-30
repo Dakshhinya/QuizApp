@@ -3,8 +3,7 @@ import QuestionInput from "./commonComponents/QuestionInput";
 import SaveButton from "./commonComponents/SaveButton";
 import CancelButton from "./commonComponents/CancelButton";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addQuestion } from "../../store/questionsSlice";
+
 
 function ParaTemplate() {
   const [paraAnswer, setparaAnswer] = useState("");
