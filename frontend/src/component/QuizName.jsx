@@ -23,15 +23,13 @@ function QuizName(){
              console.log(res);
              localStorage.setItem("quizId",res.data.id);
              navigate('/teacher-dashboard/add-questions');
-         }catch(err)
+         }
+         catch(err)
          {
           console.log(err);
-         }
-        
+         }    
     }
    
- 
-
     return (
         <div className="flex flex-col justify-center">
         <div className=" flex flex-col p-10 gap-3 justify center items-center">
@@ -41,13 +39,13 @@ function QuizName(){
             value={quizname}
             onChange={(e)=>setQuizName(e.target.value)}
             />
-         
-
+            
             <Button variant="contained" color="secondary"
-           onClick={handleNavigationToAddQuestions}>Add  Questions
-            </Button>
+           onClick={handleNavigationToAddQuestions}>Add Questions
+            </Button>            
 
         </div>
+        
         </div>
     )
 }

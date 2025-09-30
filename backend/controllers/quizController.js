@@ -1,4 +1,3 @@
-
 const createQuiz=require("../models/quizesSchema");
 
 const createQuizController=async(req,res)=>{

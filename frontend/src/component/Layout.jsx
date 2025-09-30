@@ -5,7 +5,8 @@ import Footer from "./templateModule/Footer";
 
 export default function Layout() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
+    {/* <div className=""> */}
       
       <Navbar/>
       <main className="flex-grow mt-16"> 
@@ -13,6 +14,7 @@ export default function Layout() {
       </main>
       <Footer/>
       
-    </div>
+    {/* </div> */}
+    </>
   );
 }

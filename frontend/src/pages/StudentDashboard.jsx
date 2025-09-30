@@ -1,3 +1,4 @@
+import React from 'react'
 
 
 function StudentDashboard(){
@@ -11,5 +12,4 @@ function StudentDashboard(){
     )
 
 }
-
 export default StudentDashboard;
