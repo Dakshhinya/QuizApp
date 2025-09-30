@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { Card, Button, TextField, Dialog, DialogActions,DialogTitle } from "@mui/material";
+=======
+import { Card, Button, TextField, Dialog, DialogActions, DialogTitle } from "@mui/material";
+>>>>>>> fd9f4861836822cef0f4e42cd282b8f817c9ed10
 
 function QuestionList() {
   const [questions, setQuestions] = useState([
