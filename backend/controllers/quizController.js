@@ -1,4 +1,4 @@
-const createQuiz=require("../models/quizesSchema");
+const {createQuiz}=require("../models/quizesSchema");
 
 const createQuizController=async(req,res)=>{
 
@@ -13,8 +13,12 @@ const createQuizController=async(req,res)=>{
     }
     catch(err)
     {
-        res.status(400).json({message:err});
+         console.log(err);
+    res.status(400).json({ message: err.message || "Failed to create quiz" });
     }
 }
 
-module.exports=createQuizController;
+module.exports =createQuizController;
+
+
+

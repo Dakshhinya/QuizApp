@@ -21,6 +21,7 @@ function QuizName(){
             )
 
              console.log(res);
+             console.log("quizid is",res.data.id);
              localStorage.setItem("quizId",res.data.id);
              navigate('/teacher-dashboard/add-questions');
          }
