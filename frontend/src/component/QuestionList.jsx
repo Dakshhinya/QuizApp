@@ -1,17 +1,34 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, Button, TextField, Dialog, DialogActions, DialogTitle } from "@mui/material";
-
-function QuestionList() {
-  const [questions, setQuestions] = useState([
-    { id: 1, question_type: "oneMark", questionText: "What is 2 + 2?", answer: "4" },
-      { id: 1, question_type: "oneMark", questionText: "What is 2 + 2?", answer: "4" }
-  ]);
-
-  const [openEdit, setOpenEdit] = useState(false);
+import axios from "axios";
+function QuestionList({refresh}) {
+  const [questions, setQuestions] = useState([]);
+     const [openEdit, setOpenEdit] = useState(false);
   const [editingQuestion, setEditingQuestion] = useState(null);
+ 
+
+  const quizId=localStorage.getItem("quizId");
+  const fetchQuestions=async()=>{
+    try{
+      const response=await axios.get(`http://localhost:3000/api/auth/questions/list?quizId=${quizId}`)
+
+      setQuestions(response.data);
+
+    }catch(err)
+    {
+       console.log(err);
+    }
+    
+  }
+
+   useEffect(()=>{
+    fetchQuestions();
+  },[refresh])
+
+
 
   const handleDelete = (id) => {
-    setQuestions(questions.filter(q => q.id !== id));
+    console.log("will do later",id)
   };
 
   const handleOpenEdit = (q) => {
@@ -25,8 +42,7 @@ function QuestionList() {
   };
 
   const handleSaveEdit = () => {
-    setQuestions(questions.map(q => q.id === editingQuestion.id ? editingQuestion : q));
-    handleCloseEdit();
+    console.log("will do later",id);
   };
 
   if (!questions.length) return <Card className="mt-6 p-4 w-full"><h2>No Questions Yet</h2></Card>;

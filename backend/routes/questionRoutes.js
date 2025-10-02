@@ -1,12 +1,12 @@
 const express = require('express')
 
-const createNewQuestion = require('../controllers/questionController')
-// const displayQuestions = require('../controllers/questionController')
+const {createNewQuestion,ListQuestions} = require('../controllers/questionController')
+
 
 const router = express.Router()
 
 router.post('/create', createNewQuestion);
-// router.post('/questionList',displayQuestions)
+router.get('/list',ListQuestions)
 
 module.exports=router;
 

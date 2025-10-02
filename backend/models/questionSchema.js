@@ -6,9 +6,12 @@ const createQuestion=async({quizId,type,question,answer})=>{
 
 }
 
-// const renderQuestions = async({quizId, question_type, question_text,answer })=>{
-//     const result = await pool.query('Select * FROM questions where quizid = $1',[quizId])
-//     return result.rows;
-// }
+const renderQuestions = async(quizId)=>{
+    const result = await pool.query(
+        'SELECT id, questiontext AS "questionText", answer, question_type FROM questions WHERE quizid = $1',
+        [quizId]
+    );
+    return result.rows;
+}
 
-module.exports={createQuestion};
+module.exports={createQuestion,renderQuestions};

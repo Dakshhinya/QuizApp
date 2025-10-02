@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 
 
-function ParaTemplate() {
+function ParaTemplate({ onQuestionAdded }) {
   const [paraAnswer, setparaAnswer] = useState("");
     const [ParaQuestionText, setParaQuestionText] = useState("");  
      const quizId = localStorage.getItem("quizId");
@@ -19,6 +19,7 @@ function ParaTemplate() {
          );
          console.log(ParagraphQuestion);
          alert("Paragraph question added");
+          if (onQuestionAdded) onQuestionAdded();
          setParaQuestionText("");
          setparaAnswer("");
        } catch (err) {

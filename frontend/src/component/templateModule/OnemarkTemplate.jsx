@@ -5,7 +5,7 @@ import CancelButton from "./commonComponents/CancelButton";
 import { useState } from "react";
 import axios from "axios";
 
-function OnemarkTemplate() {
+function OnemarkTemplate({ onQuestionAdded }) {
   const [QuestionText, setQuestionText] = useState("");
   const [answer, setAnswer] = useState("");
   const quizId = localStorage.getItem("quizId");
@@ -18,6 +18,7 @@ function OnemarkTemplate() {
       );
       console.log(OnemarkQuestion);
       alert("One mark question added");
+       if (onQuestionAdded) onQuestionAdded();
       setQuestionText("");
       setAnswer("");
     } catch (err) {

@@ -5,7 +5,7 @@ import CancelButton from "./commonComponents/CancelButton";
 import { useState } from "react";
 import axios from "axios";
 
-function TrueOrFalseTemplate() {
+function TrueOrFalseTemplate({ onQuestionAdded }) {
   const [TFQuestionText, setTFQuestionText] = useState("");
   const [TFanswer, setTFAnswer] = useState(null);
 
@@ -23,6 +23,7 @@ function TrueOrFalseTemplate() {
 
     console.log(TrueOrFalseResponse);
     alert("TrueOrFalse question added");
+     if (onQuestionAdded) onQuestionAdded();
     setTFQuestionText("");
     setTFAnswer("");
   };

@@ -8,17 +8,22 @@ import QuestionList from "../component/QuestionList";
 
 function AddQuestions() {
   const [activeTemplate, setActiveTemplate] = useState(null);
+ const [refreshQuestions, setRefreshQuestions] = useState(false);
+
+  const onQuestionAdded = () => {
+    setRefreshQuestions(prev => !prev);
+  };
 
   const renderTemplate = () => {
     switch (activeTemplate) {
       case "para":
-        return <ParaTemplate />;
+        return <ParaTemplate onQuestionAdded={onQuestionAdded} />;
       case "oneMark":
-        return <OnemarkTemplate />;
+        return <OnemarkTemplate onQuestionAdded={onQuestionAdded} />;
       case "choose":
-        return <ChooseTemplate />;
+        return <ChooseTemplate onQuestionAdded={onQuestionAdded}/>;
       case "trueFalse":
-        return <TrueOrFalseTemplate />;
+        return <TrueOrFalseTemplate onQuestionAdded={onQuestionAdded}/>;
       default:
         return null;
     }
@@ -46,7 +51,7 @@ function AddQuestions() {
       <div className="w-full flex justify-center">
         {renderTemplate()}
       </div>
-      <QuestionList/>
+    <QuestionList refresh={refreshQuestions} />
     </div>
   );
 }
