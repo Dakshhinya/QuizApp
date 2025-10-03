@@ -14,6 +14,6 @@ app.use('/api/auth/quiz',quizRoutes);
 app.use('/api/auth/questions',questionRoutes);
 
 
-app.listen(3000,()=>{
-    console.log("Server listening to the port 3000 ")   
+app.listen(4422,'0.0.0.0',()=>{
+    console.log("Server listening to the port 4422 ")   
 })
